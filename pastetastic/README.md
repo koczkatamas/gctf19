@@ -4,7 +4,7 @@ This is just a not-that-**quick summary on the important points** / tricks of th
 
 Read the **whole story below** ▼▼▼!
 
-* The admin will visit any reported URL, not just the posts on Pastetastic
+* The admin visit any reported URL, not just the posts on Pastetastic
   * you have to modify the "DMCA" report's HTTP request after the Recaptcha check
 * `CONFIG` JS variable can be removed by abusing Chrome's XSS auditor via sending `<script ...>CONFIG=...</script>` as query parameter (e.g. `?PlzRemoveThisCodeForMe=<script>...`)
   * this is possible since Chrome 74 as it switched to `filter` mode by default instead of previous `block`
@@ -52,8 +52,10 @@ Read the **whole story below** ▼▼▼!
       * CORS should be considered, so the JS file should be served with the following headers:
         * `Access-Control-Allow-Origin: *`
         * `Access-Control-Allow-Methods: GET`
-* Flag in admin's browser was only available via HTTPS ('secure' flag in set on cookie)
+* Flag in admin's browser was only available via HTTPS (`secure` flag in set on cookie)
   * so use HTTPS websites for each steps, not to run into mixed content errors
+
+**The flag:** `CTF{694435c0074e860b24cad51f584d0d30}`
 
 # Story
 
