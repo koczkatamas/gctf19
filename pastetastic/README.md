@@ -22,7 +22,7 @@ Read the **whole story below** ▼▼▼!
   * `# ![someName](URL)` will be converted to `<h1 id="someName"><img src="URL" ...></h1>`
   * [here is the code](https://github.com/markedjs/marked/blob/0b7fc5e3420832efc1c8892d9792363a85d199a5/lib/marked.js#L973) which calculates the `id` value (requires `headerIds` to be set to `true`, but this is the default config)
 * The website's `postMessage` handling code (`app.js:13`) does not check the `origin` and can be called by untrusted parties (us :P)
-* By creating a fake DOM structure (via **DOM Clobbering**) with the help of the tricks described above, it is possible the make `app.js`'s code to call `loadScripts` with our JS file (which will eval our code and **steal the flag** in the cookie)
+* By creating a fake DOM structure (via **DOM Clobbering**) with the help of the tricks described above, it is possible the make [app.js](https://github.com/koczkatamas/gctf19/blob/master/pastetastic/writeup_assets/app.js)'s code to call `loadScripts` with our JS file (which will eval our code and **steal the flag** in the cookie)
   * `this.config = CONFIG.viewer[index];` (`app.js:24`)
     * `CONFIG` is our hijacked Recaptcha iframe pointing to our html file
     * our html file contains `<iframe name="viewer" src="https://pastetastic...com/view/..."></iframe>` which points to a Markdown file
