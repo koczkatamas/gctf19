@@ -34,7 +34,7 @@ Read the **whole story below** ▼▼▼!
     * Markdown "`# dependencies`" was converted to `<h1 id="dependencies">...</h1>`
     * named elements are visible on the window (aka. on `this.config`) - again: [here is the specs](https://html.spec.whatwg.org/multipage/window-object.html#document-tree-child-browsing-context-name-property-set)
     * so `this.config.dependencies` is our `<h1>` tag (in JS it's a `[object HTMLHeadingElement]`)
-    * `this.config.dependencies.length` is undefined as `HTMLHeadingElement` does not have a `length` property
+    * `this.config.dependencies.length` is `undefined` as `HTMLHeadingElement` does not have a `length` property
     * `i < this.config.dependencies.length` is `false` as `0 < undefined == false` in JS
     * so the for loop never runs
   * for loop on `this.config.preload` (`app.js:33`)
@@ -46,10 +46,10 @@ Read the **whole story below** ▼▼▼!
     * `this.config.plugins` is the `<h1>` tag
     * set `lang` to `firstElementChild`
     * `this.config.plugins[lang]` is `h1`'s `firstElementChild`, so the `<img>` tag
-    * `spec.requires` (`app.js:54`) is undefined, so this `if` is ignored
+    * `spec.requires` (`app.js:54`) is `undefined` as `HTMLImageElement` does not have an `requires` property, so this `if` is ignored
   * `this.loadScript(spec);` (`app.js:59`)
     * so `spec` is the `<img>` tag (`HTMLImageElement`)
-    * `spec.integrity` (`app.js:68`) is undefined as `HTMLImageElement` does not have an `integrity` property, so this `if` is ignored
+    * `spec.integrity` (`app.js:68`) is `undefined` as `HTMLImageElement` does not have an `integrity` property, so this `if` is ignored
     * `fetch(spec.src, params)` (`app.js:71`) fetches the `<img>` tag's `src` attribute which is our exploit's URL
       * CORS should be considered, so the JS file should be served with the following headers:
         * `Access-Control-Allow-Origin: *`
