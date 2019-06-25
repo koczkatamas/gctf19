@@ -4,7 +4,7 @@ This was one of the 4 web challenges on the CTF, but this was the only web one w
 
 I've just **missed the deadline** of solving the challenge **by ~30 minutes**.
 
-(This would've meant **3rd** place with the +500pts, and my teammate almost finished an another challenge, so even 1st place would've been possible.)
+(This would've meant **3rd** place with the +500pts, and my teammate almost finished an another challenge, so even 1st place would've been possible. We finished 7th in the end.)
 
 So in overall I liked this challenge the most on GCTF (from those I worked with), and although we ([!SpamAndHex](https://twitter.com/spamandhex))  qualified to the Finals (the third time actually :P) which made me super happy, still I finished the CTF with a bittersweet feeling of not finishing this challenge on time...
 
