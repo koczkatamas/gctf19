@@ -98,8 +98,6 @@ This means the following:
 * `base-uri 'none'`: you could not set base URL via the `<base>` element (does not really matter for us)
 * `object-src 'none'`: you could not load content via the `<object>`, `<embed>` and `<applet>` elements (does not really matter for us)
 
-This is just a not-that-**quick summary on the important points** / tricks of the challenge for those who worked on the challenge, but got stuck at some point / missed some tricks.
-
 ## The solution
 
 Let's go through the building blocks required to solve this challenge.
