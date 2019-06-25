@@ -57,7 +57,7 @@ Read the **whole story below** ▼▼▼!
         * `Access-Control-Allow-Origin: *`
         * `Access-Control-Allow-Methods: GET`
 * Flag in admin's browser was only available via HTTPS (`secure` flag in set on cookie)
-  * so use HTTPS websites for each steps, not to run into mixed content errors
+  * so use HTTPS website for each step, not to run into mixed content errors
 
 **The flag:** `CTF{694435c0074e860b24cad51f584d0d30}`
 
