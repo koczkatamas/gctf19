@@ -12,8 +12,9 @@ Read the **whole story below** ▼▼▼!
     * `filter` = removes code, `block` = does not load the website at all
     * admin used Headless Chrome 77
     * more info in this Twitter thread: https://twitter.com/shhnjk/status/1121138947923406848
+  * node is removed even if the `nonce` attribute does not match, don't exactly know if it is intentional or not...
 * `CONFIG` variable can be reintroduced by iframeing the website and modifying the `name` of one of its internal iframes 
-  * there is no `X-Frame-Options: DENY` header, so iframeing is possible
+  * there is no `X-Frame-Options: DENY` header and no `frame-ancestors` policy in the [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors), so iframeing is possible
   * to modify the `name` of the `iframe` to `CONFIG`, you first have to set the `location` of the `iframe` to a same-origin location (same-origin as `top` frame)
   * `iframes` are available on `window` as properties by their name and `window` properties are visible the same way as global JS variables - read more about [in the specs](https://html.spec.whatwg.org/multipage/window-object.html#document-tree-child-browsing-context-name-property-set)
 * You cannot run scripts in the `sandbox` iframe (as its `sandbox` attribute does not include `allow-scripts` value), but Recaptcha also adds two iframes which do not have the `sandbox` attribute set, so they can run scripts
