@@ -22,12 +22,12 @@ Read the **whole story below** ▼▼▼!
   * `# ![someName](URL)` will be converted to `<h1 id="someName"><img src="URL" ...></h1>`
   * [here is the code](https://github.com/markedjs/marked/blob/0b7fc5e3420832efc1c8892d9792363a85d199a5/lib/marked.js#L973) which calculates the `id` value (requires `headerIds` to be set to `true`, but this is the default config)
 * The website's `postMessage` handling code (`app.js:13`) does not check the `origin` and can be called by untrusted parties (us :P)
-* By creating a fake DOM structure (via **DOM Clobbering**) with the help of the tricks described above, it is possible the make [app.js](https://github.com/koczkatamas/gctf19/blob/master/pastetastic/writeup_assets/app.js)'s code to call `loadScripts` with our JS file (which will eval our code and **steal the flag** in the cookie)
+* By creating a fake DOM structure (via **DOM Clobbering**) with the help of the tricks described above, it is possible to hijack [app.js](https://github.com/koczkatamas/gctf19/blob/master/pastetastic/writeup_assets/app.js)'s code and make it to call `loadScripts` with our JS file (which will eval our code and **steal the flag** in the cookie)
   * `this.config = CONFIG.viewer[index];` (`app.js:24`)
     * `CONFIG` is our hijacked Recaptcha iframe pointing to our html file
     * our html file contains `<iframe name="viewer" src="https://pastetastic...com/view/..."></iframe>` which points to a Markdown file
       * this would not work if we used the `sandbox` iframe, as rendering Markdown requires JS, that's why we used one of Recaptcha's iframe
-    * `CONFIG.viewer` is the `view` page
+    * `CONFIG.viewer` is the Markdown viewer (`/view/`) page's window
     * `CONFIG.viewer[index]` (`index=0`) is the Markdown viewer page's first iframe (so the `sandbox` iframe) and this is where the rendered Markdown is
     * so `this.config` is our rendered Markdown's window
   * for loop on `this.config.dependencies` (`app.js:28`)
@@ -35,6 +35,7 @@ Read the **whole story below** ▼▼▼!
     * named elements are visible on the window (aka. on `this.config`) - again: [here is the specs](https://html.spec.whatwg.org/multipage/window-object.html#document-tree-child-browsing-context-name-property-set)
     * so `this.config.dependencies` is our `<h1>` tag (in JS it's a `[object HTMLHeadingElement]`)
     * `this.config.dependencies.length` is `undefined` as `HTMLHeadingElement` does not have a `length` property
+      * we had to put `dependencies` into Markdown, because otherwise this code would've break and stop the script from running (as if `dependencies` was `undefined` then `dependencies.length` would cause a "cannot access a property of undefined" error)
     * `i < this.config.dependencies.length` is `false` as `0 < undefined == false` in JS
     * so the for loop never runs
   * for loop on `this.config.preload` (`app.js:33`)
