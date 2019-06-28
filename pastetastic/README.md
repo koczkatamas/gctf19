@@ -106,6 +106,7 @@ Let's go through the building blocks required to solve this challenge.
 
 * There were no (known) vulnerability in the third-party libraries ([Prism](https://prismjs.com/) and [Marked.js](https://marked.js.org))
   * *edit:* turns out Marked's sanitizer can be bypassed with e.g. `<script><im<script>g onerror=alert(1) />` as this will be rendered as `<img onerror=alert(1) />` (seen in [@LiveOverflow's video](https://youtu.be/zjriIehgAec?t=1288))
+  * I've [sent a PR to Marked](https://github.com/markedjs/marked/pull/1504) which deprecates the sanitize argument and recommends using an external sanitizer library, e.g. DOMPurify. Also tries to fix the current bypass (while accepting the fact that other bypasses probably still exist).
 * The admin visited any reported URL, not just the posts on Pastetastic
   * you had to modify the "DMCA" report's HTTP request after the Recaptcha check
 * The [Marked library](https://github.com/markedjs/marked/blob/master/lib/marked.js) used for rendering Markdown is able to include `<img>` tag with `src` attribute and adds `id` attribute to heading tags (eg. to `#` -> `h1`)
